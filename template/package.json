@@ -1,15 +1,15 @@
 {
-  "name": "{{name}}",
+  "name": "app",
   "version": "1.0.0",
-  "description": "{{description}}",
+  "description": "A vue.js project",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --progress --config webpack.prod.conf.js",
-    "dev": "webpack -w --progress",
+    "build": "webpack --progress  --colors --config webpack.prod.conf.js",
+    "dev": "webpack -w --progress --colors ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "{{author}}",
-  "license": "{{license}}",
+  "author": "hanyang",
+  "license": "ISC",
   "dependencies": {
     "vue": "^1.0.16"
   },
