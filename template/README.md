@@ -10,6 +10,4 @@ npm run dev
 # build for production with minification
 npm run build
 
-# run unit tests
-npm test
 ```
