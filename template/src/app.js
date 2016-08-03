@@ -1,4 +1,7 @@
-import Vue from "Vue"
+import "./css/normalize.css"
+import "./css/common.css"
+
+import router from "./router"
 import APP from "./app.vue"
 
-var app = new Vue(APP).$mount("#app")
+router.start(APP, "#app")

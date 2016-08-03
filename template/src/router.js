@@ -1,4 +1,5 @@
-import Vue from "Vue"
+import Home from "./views/home.vue"
+
 import VueRouter from "vue-router"
 
 Vue.use(VueRouter)
@@ -8,9 +9,13 @@ var router = new VueRouter({
 })
 
 router.map({
-	"*": {
-		component: require("./components/404.vue")
+	"/": {
+		component: Home
 	}
+})
+
+router.redirect({
+	"*": "/"
 })
 
 export default router
