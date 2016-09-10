@@ -24,10 +24,13 @@ if (process.env.NODE_ENV === "production") {
 }
 
 export default {
-	entry: "./src/app.js",
+	entry: {
+		app: "./src/app.js",
+		vendor: ["vue", "vue-router"]
+	},
 	output: {
 		path: path.resolve(__dirname, "./dist"),
-		filename: "build.js",
+		filename: "[name].js",
 		publicPath: "/dist/"
 	},
 	module: {
@@ -70,9 +73,6 @@ export default {
 			"vue-router": "vue-router/dist/vue-router.min.js"
 		},
 		extensions: ["", ".js", ".vue", "css"]
-	},
-	externals: {
-		vue: "Vue"
 	},
 	devServer: {
 		historyApiFallback: true,
