@@ -4,8 +4,8 @@
   "description": "A vue.js project",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --progress  --colors --config webpack.prod.conf.js",
-    "dev": "webpack -w --progress --colors ",
+    "build": "cross-env NODE_ENV=production webpack --progress --colors --config webpack.config.babel.js",
+    "dev": "webpack-dev-server --hot --inline --colors --progress --port 80 --config webpack.config.babel.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "hanyang",
