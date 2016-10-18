@@ -5,7 +5,9 @@ import autoprefixer from "autoprefixer"
 import ExtractTextPlugin from "extract-text-webpack-plugin"
 
 let plugins = [new ExtractTextPlugin("mobile.css")]
-let productionPlugins = [
+let devtool = "eval-source-map"
+
+const productionPlugins = [
 	new webpack.DefinePlugin({
 		"process.env": {
 			NODE_ENV: "production"
@@ -16,17 +18,21 @@ let productionPlugins = [
 			warnings: false
 		}
 	}),
-	new webpack.optimize.OccurrenceOrderPlugin()
+	new webpack.optimize.OccurrenceOrderPlugin(),
+	new webpack.optimize.CommonsChunkPlugin("commons.js", ["app", "vendors"]),
+	new webpack.BannerPlugin(`This file is created by hanyang\nupdated_at: ${(new Date).toGMTString()}`)
 ]
 
 if (process.env.NODE_ENV === "production") {
 	plugins = plugins.concat(productionPlugins)
+
+	devtool = "source-map"
 }
 
 export default {
 	entry: {
 		app: "./src/app.js",
-		vendor: ["vue", "vue-router"]
+		vendors: ["vue", "vue-router"]
 	},
 	output: {
 		path: path.resolve(__dirname, "./dist"),
@@ -34,7 +40,6 @@ export default {
 		publicPath: "/dist/"
 	},
 	module: {
-		noParse: [/vue-router/],
 		loaders: [
 			{
 				test: /\.vue$/,
@@ -51,7 +56,7 @@ export default {
 				loader: ExtractTextPlugin.extract("style-loader", "css!postcss")
 			},
 			{
-				test: /\.(png|jpg|gif|ttf|svg|ico)$/,
+				test: /\.(png|jpg|gif|webp|ttf|svg|ico)$/,
 				loader: "url-loader",
 				query: {
 					name: "[hash].[ext]",
@@ -68,9 +73,8 @@ export default {
 	],
 	plugins: plugins,
 	resolve: {
-		root: path.resolve(__dirname, "node_modules"),
 		alias: {
-			"vue-router": "vue-router/dist/vue-router.min.js"
+			vue: "vue/dist/vue.js"
 		},
 		extensions: ["", ".js", ".vue", "css"]
 	},
@@ -81,10 +85,10 @@ export default {
 		progress: true,
 		proxy: {
 			"/depression-api/*": {
-				target: "http://192.168.0.247:8080",
+				target: "http://192.168.0.27:8080",
 				secure: false
 			}
 		}
 	},
-	devtool: "source-map"
+	devtool: devtool
 }

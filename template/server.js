@@ -17,8 +17,8 @@ app.get("*", (req, res) => {
 app.post("/depression-api/*", (req, res) => {
 	const postData = querystring.stringify(req.body)
 	const proxyRequest = http.request({
-		host: process.env.NODE_URL || "192.168.0.247",
-		port: process.env.NODE_PORT || 8080,
+		host: process.argv[2] || "api.120xinmao.com",
+		port: process.argv[3] || 80,
 		path: req.path,
 		method: req.method,
 		headers: {

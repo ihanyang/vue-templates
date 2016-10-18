@@ -1,7 +1,11 @@
 import "./css/normalize.css"
 import "./css/common.css"
 
+import Vue from "vue"
 import router from "./router"
-import APP from "./app.vue"
+import App from "./app.vue"
 
-router.start(APP, "#app")
+const app = new Vue({
+	router,
+	... App
+}).$mount("#app")
