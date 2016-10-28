@@ -19,7 +19,6 @@ const productionPlugins = [
 		}
 	}),
 	new webpack.optimize.OccurrenceOrderPlugin(),
-	new webpack.optimize.CommonsChunkPlugin("commons.js", ["app", "vendors"]),
 	new webpack.BannerPlugin(`This file is created by hanyang\nupdated_at: ${(new Date).toGMTString()}`)
 ]
 
@@ -73,9 +72,6 @@ export default {
 	],
 	plugins: plugins,
 	resolve: {
-		alias: {
-			vue: "vue/dist/vue.js"
-		},
 		extensions: ["", ".js", ".vue", "css"]
 	},
 	devServer: {
